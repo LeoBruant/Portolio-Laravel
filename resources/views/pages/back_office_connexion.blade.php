@@ -17,7 +17,7 @@
             session_start();
             $_SESSION['session'] = 'deco';
 
-            //connexion à la base de données
+            //connexion à la base de données et récupération des données
 
             $servername = "mysql-lyceestvincent.alwaysdata.net";
             $username = "116313_lbruant";
@@ -31,6 +31,7 @@
         <!-- formulaire -->
 
         <form method="POST" class="text-center">
+            @csrf
             <input type="password" placeholder="mot de passe" name="mdp" class="col-md-3">
             <br>
             <input type="submit" value="se connecter" name="valider" class="col-md-2">
@@ -46,8 +47,8 @@
                 echo'<p class="text-center">Mot de passe incorrect</p>';
             }
             if(isset($_POST['valider']) && hash('sha1', $_POST['mdp']) === $compte[0][0]){
-                header('Location: back_office.php');
                 $_SESSION['session'] = 'co';
+                header('Location: ' . route('back-office'));
                 exit();
             }
         ?>

@@ -4,16 +4,21 @@ session_start();
 
 // vérification de la session
 
-if ($_SESSION['session'] == 'deco') {
-	header('Location: back_office_connexion.php');
+if($_SESSION['session'] == 'deco') {
+	header('Location:' . route('back-office-connexion'));
 	exit();
 }
 
-// récupération des données
+// connexion à la base de données et récupération des données
 
-require_once('traitement/connexion_bdd.php');
+$servername = "mysql-lyceestvincent.alwaysdata.net";
+$username = "116313_lbruant";
+$password = "%!sRY8b?[G:}";
+$connexion = new PDO("mysql:host=$servername;dbname=lyceestvincent_lbruant", $username, $password);
+$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 $projets = $connexion->query('SELECT id_projet FROM projet')->fetchAll();
-$projet = $connexion->query('SELECT nom_projet, lien_projet, contexte_projet, description_projet, date_debut_projet, date_fin_projet, bilan_projet, documentation_projet FROM projet where id_projet = ' . $_GET['id'])->fetchAll();
+$projet = $connexion->query('SELECT * FROM projet where id_projet = ' . $_GET['id'])->fetchAll();
 
 // vérification de l'id
 
@@ -43,21 +48,22 @@ if ($trouve == false) {
 </head>
 
 <body>
-	<p class="text-center"><a class="text-dark" href="back_office.php">Retour</a></p>
+<p class="text-center"><a class="text-dark" href="{{ route('back-office') }}">Retour</a></p>
 
 	<h1 class="text-center m-5">Modification de <?php echo $projet[0]['nom_projet']; ?></h1>
 
 	<!-- formulaire -->
 
 	<form method="POST" class="container-fluid text-center col-md-5 col-xl-3">
+		@csrf
 		<div class="champ">
 			<input type="text" name="nom" placeholder="nom du projet">
 			<p><span class="actuel">actuel : <?php echo $projet[0]['nom_projet']; ?> </span></p>
 		</div>
 
 		<div class="champ">
-			<input type="text" name="lien" placeholder="lien vers le projet (laisser vide si aucun)">
-			<p><span class="actuel">actuel : <?php echo $projet[0]['lien_projet']; ?> </span></p>
+			<input type="text" name="route" placeholder="route vers le projet (laisser vide si aucun)">
+			<p><span class="actuel">actuel : <?php echo $projet[0]['route_projet']; ?> </span></p>
 		</div>
 
 		<br>
@@ -118,7 +124,7 @@ if ($trouve == false) {
 			} elseif (preg_match("^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$^", $_POST['fin']) == 0 && !empty($_POST['fin'])) {
 				echo "<p>La date de fin saisie est invalide</p>";
 			} else {
-				$modifier = $connexion->prepare('UPDATE projet set nom_projet = :nom_projet, lien_projet = :lien_projet, contexte_projet = :contexte_projet, description_projet = :description_projet, date_debut_projet = :date_debut_projet, date_fin_projet = :date_fin_projet, bilan_projet = :bilan_projet, documentation_projet = :documentation_projet where id_projet = ' . $_GET['id']);
+				$modifier = $connexion->prepare('UPDATE projet set nom_projet = :nom_projet, route_projet = :route_projet, contexte_projet = :contexte_projet, description_projet = :description_projet, date_debut_projet = :date_debut_projet, date_fin_projet = :date_fin_projet, bilan_projet = :bilan_projet, documentation_projet = :documentation_projet where id_projet = ' . $_GET['id']);
 
 				if (!empty($_POST['nom'])) {
 					$modifier->bindParam(':nom_projet', $_POST['nom']);
@@ -126,10 +132,10 @@ if ($trouve == false) {
 					$modifier->bindParam(':nom_projet', $projet[0]['nom_projet']);
 				}
 
-				if (!empty($_POST['lien'])) {
-					$modifier->bindParam(':lien_projet', $_POST['lien']);
+				if (!empty($_POST['route'])) {
+					$modifier->bindParam(':route_projet', $_POST['route']);
 				} else {
-					$modifier->bindParam(':lien_projet', $projet[0]['lien_projet']);
+					$modifier->bindParam(':route_projet', $projet[0]['route_projet']);
 				}
 
 				if (!empty($_POST['contexte'])) {
@@ -171,7 +177,7 @@ if ($trouve == false) {
 				}
 
 				$modifier->execute();
-				header('Location: modifier_projet.php?id='.$_GET['id']);
+				header('Location:'.route('modifier-projet').'?id=' . $_GET['id']);
 				echo'<p>Vos modifications ont bien étées enregistrées</p>';
 				exit();
 			}
@@ -180,7 +186,7 @@ if ($trouve == false) {
 	</form>
 
 	<br>
-	<p class="text-center"><a class="text-dark" href="back_office.php">Retour</a></p>
+<p class="text-center"><a class="text-dark" href="{{ route('back-office') }}">Retour</a></p>
 
 </body>
 

@@ -21,6 +21,12 @@
 	align-items: center;
 }
 
+@media screen and (min-width: 720px){
+	.navigation h2{
+		font-size: 2.5rem;
+	}
+}
+
 /* nav */
 
 #navbar{
@@ -60,6 +66,22 @@
 
 #navbar .dropdown-item.active, #navbar .dropdown-item:active{
 	background-color: #343a40;
+}
+
+@media screen and (min-width: 992px){
+	#navbar .dropdown-item{
+		font-size: 1.5rem;
+	}
+}
+
+@media screen and (min-width: 720px){
+	.navigation h2{
+		font-size: 2.5rem;
+	}
+
+	#navbar .dropdown-item{
+		font-size: 2rem;
+	}
 }
 
 /* header */
@@ -105,6 +127,18 @@
 	text-decoration: underline;
 }
 
+@media screen and (min-width: 1200px){
+	#header .nom{
+		font-size: 5rem;
+	}
+}
+
+@media screen and (min-width: 720px){
+	#header .nom{
+		font-size: 4rem;
+	}
+}
+
 /* projets */
 
 #projets{
@@ -132,7 +166,13 @@
 	align-items: center;
 	height: 90vh;
 	width: 100%;
-}	
+}
+
+@media screen and (min-width: 1200px){
+	#projets .titre_projet h3{
+		font-size: 3rem;
+	}
+}
 
 /* parcours */
 
@@ -273,12 +313,16 @@
 	text-decoration: underline;
 }
 
-		/** media queries **/
-
 @media (max-width: 991px) {
   	.timeline li .timeline-panel {
     	width: 44%;
   	}
+}
+
+@media screen and (min-width: 720px){
+	.tl-heading h4, .tl-heading p{
+		font-size: 1.5rem;
+	}
 }
 
 @media (max-width: 700px) {
@@ -357,46 +401,13 @@
 	margin: 0 auto;
 }
 
-/* media querries */
+#contact form .valider{
+	margin-bottom: 40px;
+}
+
 
 @media screen and (min-width: 720px){
-	.navigation h2{
-		font-size: 2.5rem;
-	}
-
-	#nav .dropdown-item{
-		font-size: 2rem;
-	}
-
-	#header .nom{
-		font-size: 4rem;
-	}
-
-	#projets .titre_projet h3{
-		font-size: 2.5rem;
-	}
-
-	.tl-heading h4, .tl-heading p{
-		font-size: 1.5rem;
-	}
-
 	#contact form input, #contact form textarea{
 		font-size: 1.5rem;
-	}
-}
-
-@media screen and (min-width: 992px){
-	#navbar .dropdown-item{
-		font-size: 1.5rem;
-	}
-}
-
-@media screen and (min-width: 1200px){
-	#header .nom{
-		font-size: 5rem;
-	}
-
-	#projets .titre_projet h3{
-		font-size: 3rem;
 	}
 }

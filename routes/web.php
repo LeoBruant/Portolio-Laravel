@@ -13,14 +13,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('home')->get('/', function(){
-    return view('pages/index');
+// accueil
+
+Route::name('accueil')->any('/', function(){
+    return view('pages/accueil');
 });
+
+// fiche projet
 
 Route::name('fiche-projet')->get('/fiche-projet', function () {
     return view('pages/fiche_projet');
 });
 
-Route::name('connexion-back-office')->get('/connexion-back-office', function () {
+// projets
+
+Route::name('blog-environement')->get('/projets/blog-environement', function () {
+    return view('projets/Blog-environement/index');
+});
+
+// back office
+
+Route::name('connexion-back-office')->any('/connexion-back-office', function () {
     return view('pages/back_office_connexion');
+});
+
+Route::name('back-office')->get('/back-office', function () {
+    return view('pages/back_office');
+});
+
+Route::name('modifier-projet')->any('/back-office/modifier-projet', function () {
+    return view('pages/modifier_projet');
+});
+
+Route::name('supprimer-projet')->any('/back-office/supprimer-projet', function () {
+    return view('pages/supprimer_projet');
 });

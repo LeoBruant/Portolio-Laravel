@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-    session_start();
-    
-    // vérification de la session
+session_start();
 
-        if($_SESSION['session'] === 'deco'){
-            header('Location: back_office_connexion.php');
-            exit();
-        }
+// vérification de la session
+
+    if($_SESSION['session'] === 'deco'){
+        header('Location: ' . route('back-office-connexion'));
+        exit();
+    }
 ?>
 <html lang="fr">
     <head>
@@ -21,15 +21,20 @@
     <body>
         <?php
 
-            // récupération des données
+        //connexion à la base de données et récupération des données
 
-            require_once('traitement/connexion_bdd.php');
-			$projet = $connexion->query('SELECT * FROM projet')->fetchAll();
+        $servername = "mysql-lyceestvincent.alwaysdata.net";
+        $username = "116313_lbruant";
+        $password = "%!sRY8b?[G:}";
+        $connexion = new PDO("mysql:host=$servername;dbname=lyceestvincent_lbruant", $username, $password);
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $projet = $connexion->query('SELECT * FROM projet')->fetchAll();
 		?>
 		
 		<!-- retour -->
 
-		<div class="retour"><a href="index.php">Retour</a></div>
+    <div class="retour"><a href="{{ route('accueil') }}">Retour</a></div>
 
         <!-- projets -->
 
@@ -46,54 +51,17 @@
             <tbody>
                 <?php
 
-                // affichage du titre de la réalisation
+                // affichage des réalisations
 
                 for($ind = 0; $ind < count($projet); $ind++){
                     echo'<tr>
                         <th scope="row">'.($ind+1).'</th>
-                        <td>';
-                        for ($i = 0; $i < strlen($projet[$ind]['nom_projet']); $i++) {
-
-                            // si le caractère est un tiret
-
-                            if ($projet[$ind]['nom_projet'][$i] == "_" && $projet[$ind]['nom_projet'][$i + 1] != "_") {
-                                if ($i >= 0) {
-                                    if ($projet[$ind]['nom_projet'][$i - 1] != "_") {
-                                        echo ' ';
-                                    } elseif ($projet[$ind]['nom_projet'][$i] == "_") {
-                                        if ($i >= 1) {
-                                            if ($projet[$ind]['nom_projet'][$i - 1] == "_") {
-                                                echo '\'';
-                                            }
-                                        }
-                                    } else {
-                                        echo $projet[$ind]['nom_projet'][$i];
-                                    }
-                                }
-
-                                // si deux caractères à la suite sont un tiret
-
-                            } elseif ($projet[$ind]['nom_projet'][$i] == "_") {
-                                if ($i >= 1) {
-                                    if ($projet[$ind]['nom_projet'][$i - 1] == "_") {
-                                        echo '\'';
-                                    }
-                                }
-                            }
-
-                            // sinon
-
-                            else {
-                                echo $projet[$ind]['nom_projet'][$i];
-                            }
-                        }
-
-                        echo'</td>
+                        <td>'.$projet[$ind]['nom_projet'].'</td>
                         <td>'.$projet[$ind]['description_projet'].'</td>
                         <td>'.$projet[$ind]['date_debut_projet'].'</td>
                         <td>'.$projet[$ind]['date_fin_projet'].'</td>
-                        <td><a href="modifier_projet.php?id='.$projet[$ind]['id_projet'].'" class="bouton modifier">modifier projet</a></td>
-                        <td><a href="supprimer_projet.php?id='.$projet[$ind]['id_projet'].'" class="bouton supprimer">supprimer projet</a></td>
+                        <td><a href="'.route('modifier-projet').'?id='.$projet[$ind]['id_projet'].'" class="bouton modifier">modifier projet</a></td>
+                        <td><a href="'.route('supprimer-projet').'?id='.$projet[$ind]['id_projet'].'" class="bouton supprimer">supprimer projet</a></td>
                     </tr>';
                 }
                 ?>
@@ -102,6 +70,6 @@
 
         <!-- retour -->
 
-		<div class="retour"><a href="index.php">Retour</a></div>
+		<div class="retour"><a href="{{ route('accueil') }}">Retour</a></div>
     </body>
 </html>

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <?php
-    session_start();
-    
-    // vérification de la session
-            
-        if($_SESSION['session'] == 'deco'){
-            header('Location: back_office_connexion.php');
-            exit();
-        }
+session_start();
 
-    // récupération des données
+// vérification de la session
+        
+if($_SESSION['session'] == 'deco'){
+    header('Location:' . route('back-office-connexion'));
+    exit();
+}
 
-    require_once('traitement/connexion_bdd.php');
-    $projet = $connexion->query('SELECT id_projet, nom_projet FROM projet where id_projet = '.$_GET['id'])->fetchAll();
+// connexion à la base de données et récupération des données
+
+$servername = "mysql-lyceestvincent.alwaysdata.net";
+$username = "116313_lbruant";
+$password = "%!sRY8b?[G:}";
+$connexion = new PDO("mysql:host=$servername;dbname=lyceestvincent_lbruant", $username, $password);
+$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$projet = $connexion->query('SELECT id_projet, nom_projet FROM projet where id_projet = '.$_GET['id'])->fetchAll();
 ?>
 <html lang="fr">
     <head>
@@ -30,26 +35,27 @@
         <!-- formulaire -->
 
         <form method="POST" class="container-fluid text-center">
+            @csrf
             <input class="col-xl-2 btn btn-danger" type="submit" name="oui" value="oui"></input>
             <input class="col-xl-2 btn btn-secondary" type="submit" name="non" value="non"></input>
         </form>
         <?php
 
-            // suppression du projet
+        // suppression du projet
 
-            if(isset($_POST['oui'])){
-                $query = $connexion->prepare('DELETE FROM projet WHERE id_projet = '.$projet[$_GET['id']]['id_projet']);
-                $query->execute();
-                header('Location: back_office.php');
-                exit();
-            }
+        if(isset($_POST['oui'])){
+            $query = $connexion->prepare('DELETE FROM projet WHERE id_projet = ' . $projet[$_GET['id']]['id_projet']);
+            $query->execute();
+            header('Location:'.route('back-office'));
+            exit();
+        }
 
-            // retour au back office
+        // retour au back office
 
-            elseif(isset($_POST['non'])){
-                header('Location: back_office.php');
-                exit();
-            }
+        elseif(isset($_POST['non'])){
+            header('Location:'.route('back-office'));
+            exit();
+        }
         ?>
     </body>
 </html>

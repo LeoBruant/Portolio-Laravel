@@ -30,8 +30,8 @@
 		<div class="projet col-12">
 			<h1 class="titre"><?php echo $projet[0]['nom_projet']; ?></h1>
 			<?php
-			if (!empty($projet[0]['lien_projet'])) {
-				echo '<a href="' . $projet[0]['lien_projet'] . '" target="_blank" class="lien_projet text-light">Lien vers le projet</a>';
+			if (!empty($projet[0]['route_projet'])) {
+				echo '<a href="' . route($projet[0]['route_projet']) . '" target="_blank" class="lien_projet text-light">Lien vers le projet</a>';
 			}
 			?>
 		</div>

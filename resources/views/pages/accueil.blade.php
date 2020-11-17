@@ -5,7 +5,7 @@
 @endsection
 
 @section('head')
-	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/accueil.css">
 
 	<?php
 		// connexion à la base de données
@@ -206,6 +206,7 @@
 				<h2 class="col-12">Me contacter</h2>
 			</div>
 			<form method="POST">
+				@csrf
 				<input type="text" placeholder="nom" name="nom" class="col-12 col-sm-10 form-control">
 				<input type="text" placeholder="prenom" name="prenom" class="col-12 col-sm-10 form-control">
 				<input type="email" placeholder="email" name="email" class="col-12 col-sm-10 form-control">
@@ -226,8 +227,10 @@
 					$query->bindParam(':message', $_POST["message"]);
 
 					$query->execute();
+
+					echo '<p class="text-center">Votre message a bien été envoyé.</p>';
 				} else {
-					echo '<p class="text-center text-danger">Veuillez remplir tous les champs</p>';
+					echo '<p class="text-center text-danger">Veuillez remplir tous les champs.</p>';
 				}
 			}
 			?>
