@@ -1,0 +1,111 @@
+*{
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
+}
+
+#body{
+	background-image: url("../images/computer.jpeg");
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.fab{
+	font-family: "Font Awesome 5 Brands";
+}
+
+/* header */
+
+#header{
+	height: 40vh;
+	display: flex;
+	align-items: center;
+	border-bottom: 2px solid #f8f9fa;
+	background-color: rgba(0,0,0,0.6);
+}
+
+#header .titre{
+	font-size: 4rem;
+}
+
+#header .lien_projet{
+    font-size: 1.5rem;
+}
+
+/* main */
+
+main{
+	background-color: rgba(0,0,0,0.6);
+}
+
+#main{
+	margin: 0 auto;
+	background-color: rgb(255,255,255,0.9);
+	padding-bottom: 80px;
+}
+
+#main .section p{
+	margin: 0 auto;
+}
+
+#main .rubriques{
+    font-size: 2rem;
+    border-bottom: 1px solid #343a40;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+	/* technos */
+
+.technos .technos_images{
+    margin: 0 30px;
+}
+
+.fa-html5{
+	color: rgb(255,100,0);
+}
+
+.fa-css3{
+	color: rgb(50,125,255);
+}
+
+.fa-js{
+	color: rgb(255,200,0);
+}
+
+.fa-bootstrap{
+	color: rgb(175,0,255);
+}
+
+	/* captures */
+
+.captures .carousel{
+	margin: 0 auto;
+	padding: 0;
+	border: 1px solid #f8f9fa;
+}
+
+.captures .carousel-indicators li{
+	height: 5px;
+}
+
+.captures .carousel-item img{
+	cursor: pointer;
+}
+
+.captures .modal-dialog{
+	max-width: 90%;
+}
+
+.captures .modal-body img{
+	width: 100%;
+}
+
+@media screen and (min-width: 720px){
+	#main .section p{
+		font-size: 1.5rem;
+	}
+
+	#main .rubriques{
+		font-size: 3rem;
+	}
+}

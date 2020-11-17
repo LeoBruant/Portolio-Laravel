@@ -1,0 +1,19 @@
+*{
+    font-family: roboto;
+}
+
+.champ{
+	margin-bottom: 25px;
+}
+
+.champ input{
+	width: 100%;
+}
+
+.actuel{
+	text-decoration: underline;
+}
+
+.documentation input{
+	width: 0;
+}

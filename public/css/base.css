@@ -1,0 +1,43 @@
+/* footer */
+
+#footer{
+	height: 30vh;
+	display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#footer .remonter{
+	text-align: center;
+}
+
+#footer .remonter i{
+	background-color: rgba(0,0,0,0.5);
+	padding: 8px 10px;
+	border-radius: 50%;
+	margin-bottom: 10px;
+	transition: 0.25s;
+}
+
+#footer .remonter i:hover{
+	margin-top: -10px;
+	margin-bottom: 20px;
+	transition: 0.25s;
+	background-color: rgba(0,0,0,0.8);
+}
+
+#footer .revenir, #footer .retour{
+    font-size: 1.5rem;
+}
+
+/* media querries */
+
+@media screen and (min-width: 720px){
+    #footer .remonter i{
+            padding: 15px 17px;
+        }
+
+        #footer .bdd{
+            font-size: 1.5rem;
+        }
+}
