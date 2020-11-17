@@ -73,13 +73,13 @@
 
 					<ol class="carousel-indicators">
 						<li data-target="#diaporama" data-slide-to="0" class="active bg-dark"></li>
-						@php
+						<?php
 						$projets = $connexion->query('SELECT * FROM projet')->fetchAll();
 
 						for ($nb_projets = 0; $nb_projets < count($projets) - 1; $nb_projets++) {
 							echo '<li data-target="#diaporama" data-slide-to="' . ($nb_projets + 1) . '" class="bg-dark"></li>';
 						}
-						@endphp
+						?>
 					</ol>
 
 					<!-- flèches du carousel -->
@@ -98,7 +98,7 @@
 					<!-- slides du carousel -->
 
 					<div class="carousel-inner">
-						@php
+						<?php
 
 						// affichage des réalisations
 
@@ -113,13 +113,13 @@
 							echo '">
 									<div class="titre_projet">
 										<h3 class="col-12">
-											<a href= "' . route("fiche-projet").'?id=' . $projets[$nb_projets]['id_projet'] . '" class="text-dark" target="blank">' . $projets[$nb_projets]['nom_projet'] . '</a>
+											<a href= "' . route("fiche-projet").'?id=' . $projets[$nb_projets]['id_projet'] . '" class="text-dark" target="_blank">' . $projets[$nb_projets]['nom_projet'] . '</a>
 										</h3>
 									</div>
 								</div>
 							';
 						}
-						@endphp
+						?>
 					</div>
 				</div>
 			</div>
@@ -214,7 +214,7 @@
 				<input type="submit" name="valider" value="envoyer" class="col-12 col-sm-10 valider btn btn-dark">
 			</form>
 
-			@php
+			<?php
 			if (isset($_POST['valider'])) {
 				if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['message'])) {
 
@@ -230,7 +230,7 @@
 					echo '<p class="text-center text-danger">Veuillez remplir tous les champs</p>';
 				}
 			}
-			@endphp
+			?>
 		</div>
 	</section>
 </main>

@@ -64,16 +64,28 @@ main{
 	color: rgb(255,100,0);
 }
 
-.fa-css3{
+.fa-css3-alt{
 	color: rgb(50,125,255);
 }
 
-.fa-js{
+.fa-js-square{
 	color: rgb(255,200,0);
 }
 
 .fa-bootstrap{
 	color: rgb(175,0,255);
+}
+
+.fa-vuejs{
+	color: rgb(0,255,125);
+}
+
+.fa-symfony{
+	color: rgb(30,30,30);
+}
+
+.fa-laravel{
+	color: rgb(255,25,0);
 }
 
 	/* captures */
@@ -99,6 +111,14 @@ main{
 .captures .modal-body img{
 	width: 100%;
 }
+
+	/* documentation */
+
+#documentation a{
+	color: #343a40;
+}
+
+	/* media querries */
 
 @media screen and (min-width: 720px){
 	#main .section p{

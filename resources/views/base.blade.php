@@ -34,7 +34,7 @@
             @if (Route::currentRouteName() == 'fiche-projet')
                 <p><a href={{route('home')}} class="text-light retour">Retour</a></p>
             @else
-                <p class="bdd"><a href={{route('connexion-back-office')}} class="text-light">Accéder au back office</a></p>
+                <p class="bdd"><a href={{route('connexion-back-office')}} class="text-light" target="_blank">Accéder au back office</a></p>
             @endif
             <p>&copy; Copyright {{ date('Y') }}</p>
         </div>

@@ -163,6 +163,21 @@
 				<h2 class="rubriques">Bilan</h2>
 				<p><?php echo $projet[0]['bilan_projet']; ?></p>
 			</section>
+
+			<?php
+				if($projet[0]['documentation_projet'] == 1){
+					echo'
+						<!-- documentation -->
+
+						<section id="documentation" class="section">
+							<h2 class="rubriques">Documentation</h2>
+							<p><a href="documentation/'.$projet[0]['nom_projet'].'/dossier_fonctionnel.pdf" target="_blank">Accéder à la documentation fonctionnelle</a></p>
+							<p><a href="documentation/'.$projet[0]['nom_projet'].'/dossier_technique.pdf" target="_blank">Accéder à la documentation technique</a></p>
+							<p><a href="documentation/'.$projet[0]['nom_projet'].'/fixtures.sql" target="_blank">Télécharger le fichier fixtures.sql</a></p>
+						</section>
+					';
+				}
+			?>
 		</div>
 	</main>
 @endsection
