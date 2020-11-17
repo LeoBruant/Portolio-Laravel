@@ -54,6 +54,16 @@ main{
 	padding-bottom: 50px;
 }
 
+@media screen and (min-width: 720px){
+	#main .section p{
+		font-size: 1.5rem;
+	}
+
+	#main .rubriques{
+		font-size: 3rem;
+	}
+}
+
 	/* technos */
 
 .technos .technos_images{
@@ -116,16 +126,4 @@ main{
 
 #documentation a{
 	color: #343a40;
-}
-
-	/* media querries */
-
-@media screen and (min-width: 720px){
-	#main .section p{
-		font-size: 1.5rem;
-	}
-
-	#main .rubriques{
-		font-size: 3rem;
-	}
 }
