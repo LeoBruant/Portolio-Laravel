@@ -27,7 +27,7 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link" v-on:click="show=!show"><i class="fas fa-bars fa-2x"></i></a>
 			<transition name="fade">
-				<div class="dropdown-menu col-3 col-lg-2 bg-light" v-if="show">
+				<div class="dropdown-menu col-9 col-md-4 col-lg-2 bg-light" v-if="show">
 					<a class="dropdown-item" href="#nav_projets">Mes réalisations</a>
 					<a class="dropdown-item" href="#nav_parcours">Mon parcours</a>
 					<a class="dropdown-item" href="#nav_contact">Me contacter</a>

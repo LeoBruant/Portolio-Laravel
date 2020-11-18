@@ -62,25 +62,16 @@
 
 #navbar .dropdown-item{
 	line-height: 3em;
+	font-size: 1.5rem;
 }
 
 #navbar .dropdown-item.active, #navbar .dropdown-item:active{
 	background-color: #343a40;
 }
 
-@media screen and (min-width: 992px){
-	#navbar .dropdown-item{
-		font-size: 1.5rem;
-	}
-}
-
 @media screen and (min-width: 720px){
 	.navigation h2{
 		font-size: 2.5rem;
-	}
-
-	#navbar .dropdown-item{
-		font-size: 2rem;
 	}
 }
 
