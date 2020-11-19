@@ -221,10 +221,14 @@
 
 					$query = $connexion->prepare('INSERT INTO contact (nom_contact, prenom_contact, email_contact, message_contact) VALUES (:nom, :prenom, :email, :message)');
 
-					$query->bindParam(':nom', $_POST["nom"]);
-					$query->bindParam(':prenom', $_POST["prenom"]);
+					$query->bindParam(':nom', $nom);
+					$query->bindParam(':prenom', $prenom);
 					$query->bindParam(':email', $_POST["email"]);
-					$query->bindParam(':message', $_POST["message"]);
+					$query->bindParam(':message', $message);
+
+					$nom = htmlspecialchars($_POST["nom"]);
+					$prenom = htmlspecialchars($_POST["prenom"]);
+					$message = htmlspecialchars($_POST["message"]);
 
 					$query->execute();
 
