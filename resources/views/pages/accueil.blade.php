@@ -247,7 +247,7 @@
 		el: ".dropdown",
 		data: {
 			show: false
-		}
+		},
 	})
 </script>
 @endsection
