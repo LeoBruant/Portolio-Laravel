@@ -15,7 +15,6 @@
 		// récupération des données du projet
 
 		$projet = $connexion->query('SELECT * FROM projet where id_projet = ' . $_GET['id'])->fetchAll();
-		$technos_projet = $connexion->query('SELECT * FROM technos_' . $_GET['id'])->fetchAll();
 	?>
 @endsection
 
@@ -62,12 +61,43 @@
 			<section class="section technos">
 				<h2 class="rubriques">Technos utilisées</h2>
 				<?php
-				for ($ind = 0; $ind < count($technos_projet); $ind++) {
-					$technos = $connexion->query('SELECT * FROM technos where id_techno = ' . $technos_projet[$ind]['techno'])->fetchAll();
+				$technos_projet = [];
 
+				// création du tableau contenant les technos du projet
+				
+				for ($i = 0; $i < strlen($projet[0]['technos_projet']); $i++){
+					if($projet[0]['technos_projet'][$i] != ","){
+						if($i > 0){
+							if($projet[0]['technos_projet'][$i-1] == ","){
+								if($i+1 < strlen($projet[0]['technos_projet'])){
+									if($projet[0]['technos_projet'][$i+1] == ","){
+										$technos_projet[] = $projet[0]['technos_projet'][$i];
+									}
+								}
+								else{
+									$technos_projet[] = $projet[0]['technos_projet'][$i];
+								}
+							}
+							else{
+								$technos_projet[] = $projet[0]['technos_projet'][$i-1].$projet[0]['technos_projet'][$i];
+							}
+						}
+						elseif($i-1 < strlen($projet[0]['technos_projet'])){
+							if($projet[0]['technos_projet'][$i+1] == ","){
+								$technos_projet[] = $projet[0]['technos_projet'][$i];
+							}
+						}
+					}
+				}
+
+				// affichage des technos du projet
+
+				for ($i = 0; $i < count($technos_projet); $i++) {
+					$technos = $connexion->query('SELECT * FROM technos where id_techno = ' . $technos_projet[$i])->fetchAll();
+					
 					echo '
 					<i alt="' . $technos[0]['nom_techno'] . '" title="' . $technos[0]['nom_techno'] . '" class="fab fa-' . $technos[0]['image_techno'] . ' fa-10x technos_images"></i>
-				';
+					';
 				}
 				?>
 			</section>

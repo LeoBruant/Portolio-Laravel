@@ -2,47 +2,18 @@
     font-family: roboto;
 }
 
-/* retour */
-
-.retour{
-	text-align: center;
-	padding: 10px 0;
-}
-
-.retour a{
-	color: black;
-}
-
-/* projets */
+/* back office */
 
 .table thead th{
     border-bottom: none;
 }
 
-.bouton{
-    float: right;
-    padding: 15px;
-    border-radius: 5px;
-    color: black;
+.table tr th{
+    border-top: none;
 }
 
-.bouton:hover{
-    text-decoration: none;
-    color: white;
-}
+/* modifier projet */
 
-.modifier{
-    background-color: lightblue;
-}
-
-.supprimer{
-    background-color: lightcoral;
-}
-
-.modifier:hover{
-    background-color: #007bff;
-}
-
-.supprimer:hover{
-    background-color: #dc3545;
+textarea{
+    resize: none;
 }

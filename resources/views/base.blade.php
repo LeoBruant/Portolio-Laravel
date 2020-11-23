@@ -20,7 +20,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body id="body" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body id="body">
 
     @yield('content')
 
@@ -32,7 +32,7 @@
                 <a href="#body"><i class="fa fa-chevron-up fa-2x text-light"></i></a>
             </div>
             @if (Route::currentRouteName() == 'fiche-projet')
-                <p><a href={{route('accueil')}} class="text-light retour">Retour</a></p>
+                <p><a href={{route('home')}} class="text-light retour">Retour</a></p>
             @else
                 <p class="bdd"><a href={{route('connexion-back-office')}} class="text-light" target="_blank">Accéder au back office</a></p>
             @endif

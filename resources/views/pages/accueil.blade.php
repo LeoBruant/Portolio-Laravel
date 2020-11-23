@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('title')
-	Léo Bruant | Portfolio
+	Léo Bruant | {{config('app.name')}}
 @endsection
 
 @section('head')

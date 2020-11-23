@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // accueil
 
-Route::name('accueil')->any('/', function(){
+Route::name('home')->any('/', function(){
     return view('pages/accueil');
 });
 
@@ -41,10 +41,10 @@ Route::name('back-office')->get('/back-office', function () {
     return view('pages/back_office');
 });
 
-Route::name('modifier-projet')->any('/back-office/modifier-projet', function () {
+Route::name('modifier-projet')->any('/modifier-projet', function () {
     return view('pages/modifier_projet');
 });
 
-Route::name('supprimer-projet')->any('/back-office/supprimer-projet', function () {
+Route::name('supprimer-projet')->any('/supprimer-projet', function () {
     return view('pages/supprimer_projet');
 });
